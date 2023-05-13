@@ -1,22 +1,22 @@
-import { useContext, useEffect } from "react";
-import apiClient from "../services/apiClient";
+import { useContext } from "react";
+//import apiClient from "../services/apiClient";
 
 import GameContext from "./context/GameContext";
 
 const SideBar = () => {
-  useEffect(() => {
-    apiClient
-      .get("/genres")
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.message));
-  }, []);
+  // useEffect(() => {
+  //   apiClient
+  //     .get("/genres")
+  //     .then((res) => console.log(res.data))
+  //     .catch((err) => console.log(err.message));
+  // }, []);
   const { genres } = useContext(GameContext);
   return (
-    <div className="card ">
+    <div className="card  bg-base-100 shadow-xl ">
       {genres.map((genre) => (
-        <div className="flex m-4" key={genre.id}>
-          <div className="avatar">
-            <div className="w-10 rounded-full">
+        <div className="flex my-3 hover:font-bold" key={genre.id}>
+          <div className="avatar mx-4">
+            <div className="w-10 rounded-xl">
               <img
                 height="50px"
                 width="50px"
@@ -26,7 +26,9 @@ const SideBar = () => {
             </div>
           </div>
 
-          <h3>{genre.slug}</h3>
+          <div className="py-2 ">
+            <h3 className="text-base ">{genre.name}</h3>
+          </div>
         </div>
       ))}
     </div>
