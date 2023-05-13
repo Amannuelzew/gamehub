@@ -4,7 +4,7 @@ import GameContext from "./context/GameContext";
 const NavBar = () => {
   const { theme, handleToggle } = useContext(GameContext);
   return (
-    <div>
+    <div className="bg-red-500">
       <input
         title="toggle"
         onClick={handleToggle}

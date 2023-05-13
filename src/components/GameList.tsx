@@ -1,7 +1,5 @@
-import React from "react";
-
 const GameList = () => {
-  return <div>GameList</div>;
+  return <div className="bg-yellow-600 flex-auto">GameList</div>;
 };
 
 export default GameList;

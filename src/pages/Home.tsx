@@ -7,10 +7,12 @@ import { useContext } from "react";
 const Home = () => {
   const { theme } = useContext(GameContext);
   return (
-    <div data-theme={theme ? "dark" : "light"}>
+    <div data-theme={theme ? "dark" : "light"} className="p-10">
       <NavBar />
-      <SideBar />
-      <GameList />
+      <div className="flex">
+        <SideBar />
+        <GameList />
+      </div>
     </div>
   );
 };
