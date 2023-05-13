@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div data-theme={theme ? "dark" : "light"} className="p-10">
       <NavBar />
-      <div className="flex">
+      <div className="grid grid-cols-4 gap-4">
         <SideBar />
         <GameList />
       </div>
