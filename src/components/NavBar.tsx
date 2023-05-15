@@ -5,7 +5,7 @@ const NavBar = () => {
   const { theme, handleToggle } = useContext(GameContext);
   return (
     <div className=" flex justify-between mb-4">
-      <div className="flex bg-yellow-400 ">
+      <div className="flex ">
         <div className="navbar ">
           <a className="btn btn-ghost normal-case text-xl">GameHub</a>
         </div>
@@ -15,13 +15,15 @@ const NavBar = () => {
           className="input input-bordered w-full max-w-xl m-4"
         />
       </div>
-      <input
-        title="toggle"
-        onChange={handleToggle}
-        type="checkbox"
-        className="toggle"
-        checked={theme ? true : false}
-      />
+      <div className="my-4">
+        <input
+          title="toggle"
+          onChange={handleToggle}
+          type="checkbox"
+          className="toggle"
+          checked={theme ? true : false}
+        />
+      </div>
     </div>
   );
 };

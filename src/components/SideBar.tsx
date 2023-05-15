@@ -1,8 +1,12 @@
 import { useContext } from "react";
 //import apiClient from "../services/apiClient";
 
-import GameContext from "./context/GameContext";
-
+import GameContext, { Game } from "./context/GameContext";
+import apiClient from "../services/apiClient";
+interface FetchFilterGameResponse {
+  id: number;
+  results: Game[];
+}
 const SideBar = () => {
   // useEffect(() => {
   //   apiClient
@@ -10,11 +14,23 @@ const SideBar = () => {
   //     .then((res) => console.log(res.data))
   //     .catch((err) => console.log(err.message));
   // }, []);
-  const { genres } = useContext(GameContext);
+  const { genres, handleGames } = useContext(GameContext);
+  const handleFilter = (filter: string) => {
+    apiClient
+      .get<FetchFilterGameResponse>("/games", {
+        params: { genres: filter },
+      })
+      .then((res) => handleGames(res.data.results))
+      .catch((err) => console.log(err.message));
+  };
   return (
-    <div className="card  bg-base-100 shadow-xl ">
+    <div className="card bg-base-100 shadow-xl h-max cursor-default">
       {genres.map((genre) => (
-        <div className="flex my-3 hover:font-bold" key={genre.id}>
+        <div
+          onClick={() => handleFilter(genre.slug)}
+          className="flex my-3 hover:font-bold"
+          key={genre.id}
+        >
           <div className="avatar mx-4">
             <div className="w-10 rounded-xl">
               <img
