@@ -1,33 +1,53 @@
-import { useContext } from "react";
-//import apiClient from "../services/apiClient";
+import { useContext, useEffect } from "react";
+interface Genre {
+  id: number;
+  name: string;
+}
 
 import GameContext, { Game } from "./context/GameContext";
+
 import apiClient from "../services/apiClient";
-interface FetchFilterGameResponse {
+interface FetchGameResponse {
   id: number;
   results: Game[];
 }
 const SideBar = () => {
-  // useEffect(() => {
-  //   apiClient
-  //     .get("/genres")
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.log(err.message));
-  // }, []);
-  const { genres, handleGames } = useContext(GameContext);
-  const handleFilter = (filter: string) => {
+  const {
+    genres,
+    selectedGenre,
+    selectedPlatfrom,
+    handleSelectedGenre,
+    handleGames,
+  } = useContext(GameContext);
+  const controller = new AbortController();
+  const params =
+    selectedPlatfrom > 0
+      ? {
+          genres: selectedGenre,
+          parent_platforms: selectedPlatfrom,
+        }
+      : {
+          genres: selectedGenre,
+        };
+  useEffect(() => {
     apiClient
-      .get<FetchFilterGameResponse>("/games", {
-        params: { genres: filter },
+      .get<FetchGameResponse>("/games", {
+        params: params,
+        signal: controller.signal,
       })
       .then((res) => handleGames(res.data.results))
       .catch((err) => console.log(err.message));
+
+    return () => controller.abort();
+  }, [selectedGenre]);
+  const handleFilter = (filter: Genre) => {
+    handleSelectedGenre(filter.id);
   };
   return (
-    <div className="card bg-base-100 shadow-xl h-max cursor-default">
+    <div className=" h-max cursor-default">
       {genres.map((genre) => (
         <div
-          onClick={() => handleFilter(genre.slug)}
+          onClick={() => handleFilter(genre)}
           className="flex my-3 hover:font-bold"
           key={genre.id}
         >

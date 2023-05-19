@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import PlatformData from "../data/PlatformsData";
-
 import GameContext, { Game } from "./context/GameContext";
 import apiClient from "../services/apiClient";
 

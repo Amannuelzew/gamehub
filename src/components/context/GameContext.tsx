@@ -45,12 +45,21 @@ interface theme {
   isLoading: boolean;
   genres: Genre[];
   games: Game[];
+  selectedGenre: number;
+  selectedPlatfrom: number;
+  handleSelectedPlatfrom: (a: number) => void;
+  handleSelectedGenre: (a: number) => void;
+
   handleToggle: () => void;
   handleGames: (game: Game[]) => void;
 }
 const GameContext = createContext<theme>({
   theme: false,
   isLoading: true,
+  selectedGenre: 0,
+  selectedPlatfrom: 0,
+  handleSelectedGenre: () => undefined,
+  handleSelectedPlatfrom: () => undefined,
   genres: [],
   games: [],
   handleToggle: () => undefined,
@@ -61,13 +70,19 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [genres, setGenres] = useState<Genre[]>(Genres);
+  const [selectedGenre, setSelectedGenre] = useState(0);
+  const [selectedPlatfrom, setSelectedPlatfrom] = useState(-1);
   const [games, setGames] = useState<Game[]>([]);
   const handleToggle = () => {
     setTheme(!theme);
   };
-  // const handleGenres = (genre: Genre) => {
-  //   setGenres([...[genre]]);
-  // };
+  const handleSelectedGenre = (genre: number) => {
+    setSelectedGenre(genre);
+  };
+  const handleSelectedPlatfrom = (platfrom: number) => {
+    setSelectedPlatfrom(platfrom ? platfrom : 0);
+  };
+
   const handleGames = (game: Game[]) => {
     setGames(game);
     setIsLoading(false);
@@ -77,7 +92,11 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         theme,
         isLoading,
+        selectedGenre,
+        selectedPlatfrom,
         genres,
+        handleSelectedPlatfrom,
+        handleSelectedGenre,
         games,
         handleGames,
         handleToggle,

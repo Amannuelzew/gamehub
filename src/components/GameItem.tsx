@@ -19,7 +19,7 @@ const GameItem = ({ item }: game) => {
       <div className="card-body">
         <div className="card-actions ">
           {item.platforms.map((platform) => (
-            <div className="">
+            <div className="" key={platform.platform.id}>
               <Icon as={platform.platform.slug} />
             </div>
           ))}

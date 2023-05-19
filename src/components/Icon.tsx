@@ -1,15 +1,7 @@
-import {
-  FaWindows,
-  FaPlaystation,
-  FaXbox,
-  FaLinux,
-  FaAndroid,
-  FaApple,
-} from "react-icons/fa";
+import { FaWindows, FaXbox, FaLinux, FaAndroid, FaApple } from "react-icons/fa";
 import {
   SiNintendo,
   SiPlaystation2,
-  SiPlaystation,
   SiPlaystation3,
   SiPlaystation4,
   SiPlaystation5,
