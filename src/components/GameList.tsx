@@ -14,7 +14,7 @@ const GameList = () => {
 
       <div className="grid gap-4 grid-cols-3">
         {isLoading
-          ? array.map((item, index) => <GameSkelton key={index} />)
+          ? array.map((index) => <GameSkelton key={index} />)
           : games.map((game) => <GameItem key={game.id} item={game} />)}
       </div>
     </div>

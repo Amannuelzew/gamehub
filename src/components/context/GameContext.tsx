@@ -63,13 +63,15 @@ const GameContext = createContext<theme>({
   genres: [],
   games: [],
   handleToggle: () => undefined,
-  handleGames: (game: Game[]) => undefined,
+  handleGames: (game: Game[]) => {
+    return game;
+  },
 });
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const [genres, setGenres] = useState<Genre[]>(Genres);
+  const [genres] = useState<Genre[]>(Genres);
   const [selectedGenre, setSelectedGenre] = useState(0);
   const [selectedPlatfrom, setSelectedPlatfrom] = useState(-1);
   const [games, setGames] = useState<Game[]>([]);
