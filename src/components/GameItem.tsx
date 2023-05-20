@@ -32,7 +32,9 @@ const GameItem = ({ item }: game) => {
 
         <div className="card-actions justify-end absolute bottom-0 right-0 m-2">
           <GameItemRate item={item} />
-          <div className="badge badge-outline">{item.released.slice(0, 4)}</div>
+          <div className="badge badge-outline">
+            {item.released?.slice(0, 4)}
+          </div>
         </div>
       </div>
     </div>
