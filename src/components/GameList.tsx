@@ -13,9 +13,13 @@ const GameList = () => {
       <GamePlatform />
 
       <div className="grid gap-4 grid-cols-3">
-        {isLoading
-          ? array.map((index) => <GameSkelton key={index} />)
-          : games.map((game) => <GameItem key={game.id} item={game} />)}
+        {isLoading ? (
+          array.map((index) => <GameSkelton key={index} />)
+        ) : games.length !== 0 ? (
+          games.map((game) => <GameItem key={game.id} item={game} />)
+        ) : (
+          <p>Sorry,No games found.</p>
+        )}
       </div>
     </div>
   );
