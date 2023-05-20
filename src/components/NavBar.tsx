@@ -22,7 +22,7 @@ const NavBar = () => {
     return () => controller.abort();
   };
   return (
-    <div className="flex justify-center lg:flex lg:justify-between mb-4">
+    <div className="flex justify-center md:justify-between lg:flex lg:justify-between mb-4">
       <div className="flex">
         <div className="navbar ">
           <a className="btn btn-ghost font-bold normal-case text-3xl mr-24">
