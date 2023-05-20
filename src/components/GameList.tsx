@@ -13,13 +13,9 @@ const GameList = () => {
       <GamePlatform />
 
       <div className="block md:justify-center md:grid md:gap-3 md:grid-cols-2 lg:grid lg:gap-4 lg:grid-cols-3">
-        {isLoading ? (
-          array.map((index) => <GameSkelton key={index} />)
-        ) : games.length !== 0 ? (
-          games.map((game) => <GameItem key={game.id} item={game} />)
-        ) : (
-          <p className="text-center text-xl"> Sorry, No games found.</p>
-        )}
+        {isLoading && games.length !== 0
+          ? array.map((index) => <GameSkelton key={index} />)
+          : games.map((game) => <GameItem key={game.id} item={game} />)}
       </div>
     </div>
   );
