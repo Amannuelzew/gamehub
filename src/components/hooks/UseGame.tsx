@@ -9,12 +9,12 @@ interface FetchGameResponse {
 
 const UseGame = () => {
   const { games, handleGames, isLoading } = useContext(GameContext);
-  useEffect(() => {
-    apiClient
-      .get<FetchGameResponse>("/games")
-      .then((res) => handleGames(res.data.results))
-      .catch((err) => console.log(err.message));
-  }, []);
+  // useEffect(() => {
+  //   apiClient
+  //     .get<FetchGameResponse>("/games")
+  //     .then((res) => handleGames(res.data.results))
+  //     .catch((err) => console.log(err.message));
+  // }, []);
 
   return { games, isLoading };
 };

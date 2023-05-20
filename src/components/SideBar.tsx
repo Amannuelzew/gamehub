@@ -44,7 +44,7 @@ const SideBar = () => {
     handleSelectedGenre(filter.id);
   };
   return (
-    <div className=" h-max cursor-default">
+    <div className="hidden lg:block h-max cursor-default">
       {genres.map((genre) => (
         <div
           onClick={() => handleFilter(genre)}

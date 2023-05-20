@@ -22,19 +22,21 @@ const NavBar = () => {
     return () => controller.abort();
   };
   return (
-    <div className=" flex justify-between mb-4">
+    <div className="flex justify-center lg:flex lg:justify-between mb-4">
       <div className="flex">
         <div className="navbar ">
           <a className="btn btn-ghost font-bold normal-case text-3xl mr-24">
             GameHub
           </a>
+        </div>
+        <div className="hidden lg:flex">
           <input
             type="text"
             placeholder="Search Games"
             className="input input-bordered w-[27rem] m-4"
             ref={ref}
           />
-          <button className="btn btn-primary" onClick={handleTextChange}>
+          <button className="btn btn-primary m-4" onClick={handleTextChange}>
             Search
           </button>
         </div>
