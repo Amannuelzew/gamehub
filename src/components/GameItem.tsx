@@ -3,7 +3,7 @@ import Uppercase from "../services/Uppercase";
 import { Game } from "./context/GameContext";
 import GameItemRate from "./GameItemRate";
 import Icon from "./Icon";
-
+//interface
 interface game {
   item: Game;
 }
