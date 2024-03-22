@@ -9,7 +9,7 @@ interface game {
 }
 const GameItem = ({ item }: game) => {
   return (
-    <div className="card max-h-96 w-64 bg-base-100 shadow-xl mb-4">
+    <div className="card max-h-96 w-64 m-1 bg-base-100 shadow-xl mb-6 hover:scale-105">
       <figure className="max-h-64">
         <img
           src={imageOptimize(item.background_image)}

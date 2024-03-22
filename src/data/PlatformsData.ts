@@ -1,5 +1,22 @@
 const PlatformData = [
   {
+    id: 0,
+    name: "All",
+    slug: "All",
+    platforms: [
+      {
+        id: 0,
+        name: "All",
+        slug: "All",
+        games_count: 512451,
+        image_background: "",
+        image: null,
+        year_start: null,
+        year_end: null,
+      },
+    ],
+  },
+  {
     id: 1,
     name: "PC",
     slug: "pc",

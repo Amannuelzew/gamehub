@@ -1,5 +1,12 @@
 const Genres = [
   {
+    id: 0,
+    name: "ALL",
+    slug: "ALL",
+    image_background: "",
+    games: [{}],
+  },
+  {
     id: 4,
     name: "Action",
     slug: "action",

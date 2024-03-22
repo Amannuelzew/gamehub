@@ -1,33 +1,27 @@
 import { useContext, useRef } from "react";
-import GameContext, { Game } from "./context/GameContext";
-import apiClient from "../services/apiClient";
+import GameContext from "./context/GameContext";
+import { Link } from "react-router-dom";
 
-interface FetchGameResponse {
-  id: number;
-  results: Game[];
+interface queryType {
+  onSelect: (search: string | null) => void;
 }
-const NavBar = () => {
-  const { theme, handleToggle, handleGames } = useContext(GameContext);
+const NavBar = ({ onSelect }: queryType) => {
+  const { theme, handleToggle } = useContext(GameContext);
   const ref = useRef<HTMLInputElement>(null);
-  const controller = new AbortController();
-  const handleTextChange = () => {
-    apiClient
-      .get<FetchGameResponse>("/games", {
-        params: { search: ref.current?.value },
-        signal: controller.signal,
-      })
-      .then((res) => handleGames(res.data.results))
-      .catch((err) => console.log(err.message));
 
-    return () => controller.abort();
+  const handleTextChange = () => {
+    onSelect(ref.current?.value || null);
   };
   return (
     <div className="flex justify-center md:justify-between lg:flex lg:justify-between mb-4">
       <div className="flex">
         <div className="navbar ">
-          <a className="btn btn-ghost font-bold normal-case text-3xl mr-24">
+          <Link
+            to="/"
+            className="btn btn-ghost font-bold normal-case text-3xl mr-24"
+          >
             GameHub
-          </a>
+          </Link>
         </div>
         <div className="hidden lg:flex">
           <input

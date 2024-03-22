@@ -1,47 +1,21 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
+
+import GameContext from "./context/GameContext";
 interface Genre {
   id: number;
   name: string;
 }
-
-import GameContext, { Game } from "./context/GameContext";
-
-import apiClient from "../services/apiClient";
-interface FetchGameResponse {
-  id: number;
-  results: Game[];
+interface queryType {
+  onSelect: (PlatformData: number | undefined) => void;
 }
-const SideBar = () => {
-  const {
-    genres,
-    selectedGenre,
-    selectedPlatfrom,
-    handleSelectedGenre,
-    handleGames,
-  } = useContext(GameContext);
-  const controller = new AbortController();
-  const params =
-    selectedPlatfrom > 0
-      ? {
-          genres: selectedGenre,
-          parent_platforms: selectedPlatfrom,
-        }
-      : {
-          genres: selectedGenre,
-        };
-  useEffect(() => {
-    apiClient
-      .get<FetchGameResponse>("/games", {
-        params: params,
-        signal: controller.signal,
-      })
-      .then((res) => handleGames(res.data.results))
-      .catch((err) => console.log(err.message));
 
-    return () => controller.abort();
-  }, [selectedGenre]);
+const SideBar = ({ onSelect }: queryType) => {
+  const { genres } = useContext(GameContext);
+
   const handleFilter = (filter: Genre) => {
-    handleSelectedGenre(filter.id);
+    if (filter.id === 0) return onSelect(undefined);
+
+    onSelect(filter.id);
   };
   return (
     <div className="hidden lg:block h-max cursor-default">
@@ -53,12 +27,16 @@ const SideBar = () => {
         >
           <div className="avatar mx-4">
             <div className="w-10 rounded-xl">
-              <img
-                height="50px"
-                width="50px"
-                src={genre.image_background}
-                alt={genre.name}
-              />
+              {genre.image_background !== "" ? (
+                <img
+                  height="50px"
+                  width="50px"
+                  src={genre.image_background}
+                  alt={genre.name}
+                />
+              ) : (
+                <></>
+              )}
             </div>
           </div>
 

@@ -1,10 +1,12 @@
 import { GameProvider } from "./components/context/GameContext";
-import Home from "./pages/Home";
+
+import { RouterProvider } from "react-router-dom";
+import { route } from "./route";
 
 function App() {
   return (
     <GameProvider>
-      <Home />
+      <RouterProvider router={route}></RouterProvider>
     </GameProvider>
   );
 }
